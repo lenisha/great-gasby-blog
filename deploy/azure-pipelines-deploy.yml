@@ -8,23 +8,24 @@ pool:
 
 
 steps:
-- task: NodeTool@0
+
+- task: DownloadBuildArtifacts@0
   inputs:
-    versionSpec: '8.x'
-  displayName: 'Install Node.js'
+    #buildType: 'current' # Options: current, specific
+    #project: # Required when buildType == Specific
+    #pipeline: # Required when buildType == Specific
+    #specificBuildWithTriggering: false # Optional
+    #buildVersionToDownload: 'latest' # Required when buildType == Specific# Options: latest, latestFromBranch, specific
+    #branchName: 'refs/heads/master' # Required when buildType == Specific && BuildVersionToDownload == LatestFromBranch
+    #buildId: # Required when buildType == Specific && BuildVersionToDownload == Specific
+    #tags: # Optional
+    downloadType: 'single' # Options: single, specific
+    artifactName: 'drop' # Required when downloadType == Single
+    #itemPattern: '**' # Optional
+    downloadPath: '$(System.ArtifactStagingDirectory)' 
+    #parallelizationLimit: '8' # Optional
 
 - script: |
-    npm install -g gatsby-cli
-  displayName: 'install gatsby'
-
-
-
-- task: CopyFiles@2
-  inputs:
-    sourceFolder: 'gatsby-site/public'
-    contents: '**' 
-    targetFolder: $(Build.ArtifactStagingDirectory)
-    cleanTargetFolder: true 
-  displayName: 'copy built site'
+    ls -la
 
  
