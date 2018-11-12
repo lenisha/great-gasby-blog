@@ -10,6 +10,8 @@ resources:
 pool:
   vmImage: 'Ubuntu 16.04'
 
+container: terraform_container
+
 steps:
 
 - task: DownloadBuildArtifacts@0
@@ -33,9 +35,6 @@ steps:
     ls -la
   displayName: 'LS'
  
-container: terraform_container
-
-steps:
 
 - script: |
     cd deploy/terraform
