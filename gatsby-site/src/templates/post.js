@@ -50,7 +50,7 @@ const Post = props => {
         <Content>
           <Title>{post.title}</Title>
           <Subline>
-            {post.date} &mdash; {postNode.timeToRead} Min Read &mdash; In{' '}
+            {post.date} &mdash; {postNode.timeToRead} Min Read &mdash;  Posted Under {' '}
             <Link to={`/categories/${kebabCase(post.category)}`}>{post.category}</Link>
           </Subline>
           <PostContent dangerouslySetInnerHTML={{ __html: postNode.html }} />
@@ -88,7 +88,7 @@ export const postQuery = graphql`
       excerpt
       frontmatter {
         title
-        date(formatString: "DD.MM.YYYY")
+        date(formatString: "DD MMMM, YYYY")
         category
       }
       timeToRead

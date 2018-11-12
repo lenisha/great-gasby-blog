@@ -82,7 +82,7 @@ export const postQuery = graphql`
         node {
           frontmatter {
             title
-            date(formatString: "DD.MM.YYYY")
+            date(formatString: "DD MMMM, YYYY")
             category
           }
           fields {

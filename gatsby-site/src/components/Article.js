@@ -43,7 +43,6 @@ const Article = ({ title, date, excerpt, slug, timeToRead, category }) => {
   return (
     <Post>
       <Title>
-        <Initiale>{firstChar}</Initiale>
         <Link to={slug} color={bgGreen}>{title}</Link>
       </Title>
       <Subline>

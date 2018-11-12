@@ -21,12 +21,12 @@ const GlobalStyle = createGlobalStyle`
     }
   }
   a {
-    color: ${theme.colors.grey.dark};
+    color: ${theme.colors.primary};
     text-decoration: none;
     transition: all ${theme.transitions.normal};
   }
   a:hover {
-    color: ${theme.colors.primary};
+    color: #4755F2; 
   }
   h1, h2, h3, h4 {
     color: ${theme.colors.grey.dark};
@@ -72,7 +72,7 @@ const Layout = ({ children }) => (
     query={graphql`
       query LayoutQuery {
         site {
-          buildTime(formatString: "MMMM DD YYYY HH:mm:ss Z")
+          buildTime(formatString: "DD MMMM, YYYY :: HH:mm:ss Z")
         }
       }
     `}
@@ -83,8 +83,8 @@ const Layout = ({ children }) => (
           <GlobalStyle />
           {children}
           <Footer>
-            &copy; 2018 by enerosweb.::
-            <a href="https://github.com/lenisha/altastratus.me">github</a> <br />
+            &copy; 2018 by enerosweb ::
+            <a href="https://github.com/lenisha/great-gatsby-blog">github</a> <br />
             <span><i>Site compiled on:  {data.site.buildTime}</i></span>
           </Footer>
         </React.Fragment>
