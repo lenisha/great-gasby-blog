@@ -25,9 +25,8 @@ steps:
     #parallelizationLimit: '8' # Optional
 
 - task: CmdLine@2
-  inputs:
-  
+
 - script: |
     ls -la
-
+  displayName: 'LS'
  
