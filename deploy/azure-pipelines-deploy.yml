@@ -35,6 +35,8 @@ steps:
  
 container: terraform_container
 
+steps:
+
 - script: |
     cd deploy/terraform
     terraform init
