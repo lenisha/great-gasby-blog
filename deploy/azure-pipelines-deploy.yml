@@ -6,6 +6,13 @@
 pool:
   vmImage: 'Ubuntu 16.04'
 
+trigger:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - deploy/*
 
 steps:
 
@@ -13,7 +20,7 @@ steps:
   inputs:
     buildType: 'specific' # Options: current, specific
     project: 'gatsby-blog' # Required when buildType == Specific
-    pipeline: 'great-gatsby-blog'# Required when buildType == Specific
+    pipeline: 'great-gasby-blog' # Required when buildType == Specific
     #specificBuildWithTriggering: false # Optional
     #buildVersionToDownload: 'latest' # Required when buildType == Specific# Options: latest, latestFromBranch, specific
     #branchName: 'refs/heads/master' # Required when buildType == Specific && BuildVersionToDownload == LatestFromBranch
