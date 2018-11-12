@@ -10,9 +10,6 @@ trigger:
   branches:
     include:
     - master
-  paths:
-    exclude:
-    - deploy/*
 
 steps:
 - task: NodeTool@0
