@@ -6,13 +6,6 @@
 pool:
   vmImage: 'Ubuntu 16.04'
 
-trigger:
-  branches:
-    include:
-    - master
-  paths:
-    exclude:
-    - deploy/*
 
 steps:
 - task: NodeTool@0
@@ -24,12 +17,7 @@ steps:
     npm install -g gatsby-cli
   displayName: 'install gatsby'
 
-- script: |
-    cd gatsby-site
-    npm install
-    npx gatsby build
-  displayName: 'gatsby build'
- 
+
 
 - task: CopyFiles@2
   inputs:
