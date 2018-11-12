@@ -1,0 +1,46 @@
+# Node.js with React
+# Build a Node.js project that uses React.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+pool:
+  vmImage: 'Ubuntu 16.04'
+
+trigger:
+  branches:
+    include:
+    - master
+  paths:
+    exclude:
+    - deploy/*
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '8.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install -g gatsby-cli
+  displayName: 'install gatsby'
+
+- script: |
+    cd gatsby-site
+    npm install
+    npx gatsby build
+  displayName: 'gatsby build'
+ 
+
+- task: CopyFiles@2
+  inputs:
+    sourceFolder: 'gatsby-site/public'
+    contents: '**' 
+    targetFolder: $(Build.ArtifactStagingDirectory)
+    cleanTargetFolder: true 
+  displayName: 'copy built site'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
+    artifactName: 'drop' 
+    publishLocation: 'Container' 
