@@ -23,4 +23,16 @@ steps:
   displayName: 'gatsby build'
  
 
+- task: CopyFiles@2
+  inputs:
+    sourceFolder: 'gatsby-site/public'
+    contents: '**' 
+    targetFolder: $(Build.ArtifactStagingDirectory)
+    cleanTargetFolder: true 
+  displayName: 'copy built site'
 
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
+    artifactName: 'drop' 
+    publishLocation: 'Container' 
