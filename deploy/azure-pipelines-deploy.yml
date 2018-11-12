@@ -6,14 +6,6 @@
 pool:
   vmImage: 'Ubuntu 16.04'
 
-trigger:
-  branches:
-    include:
-    - master
-  paths:
-    include:
-    - deploy/*
-
 steps:
 
 - task: DownloadBuildArtifacts@0
@@ -32,6 +24,9 @@ steps:
     downloadPath: '$(System.ArtifactStagingDirectory)' 
     #parallelizationLimit: '8' # Optional
 
+- task: CmdLine@2
+  inputs:
+  
 - script: |
     ls -la
 
