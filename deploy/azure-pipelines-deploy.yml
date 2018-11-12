@@ -33,3 +33,9 @@ steps:
     ls -la
   displayName: 'LS'
  
+container: terraform_container
+
+- script: |
+    cd deploy/terraform
+    terraform init
+  displayName: 'Terraform init'
