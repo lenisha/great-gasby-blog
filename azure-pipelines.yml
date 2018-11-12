@@ -13,8 +13,7 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    npm install
-    npm install gatsby-cli
+    npm install --global gatsby-cli
     gatsby build
   displayName: 'npm install and gatsby build'
   workingDirectory: 'gatsby-site'
