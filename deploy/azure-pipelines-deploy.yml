@@ -2,6 +2,10 @@
 # Build a Node.js project that uses React.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+resources:
+  containers:
+  - container: terraform_container
+    image: lenisha/vsts-agent-infrastructure:latest
 
 pool:
   vmImage: 'Ubuntu 16.04'
@@ -21,10 +25,9 @@ steps:
     downloadType: 'single' # Options: single, specific
     artifactName: 'drop' # Required when downloadType == Single
     #itemPattern: '**' # Optional
-    downloadPath: '$(System.ArtifactStagingDirectory)' 
+    downloadPath: 'public' 
     #parallelizationLimit: '8' # Optional
 
-- task: CmdLine@2
 
 - script: |
     ls -la
