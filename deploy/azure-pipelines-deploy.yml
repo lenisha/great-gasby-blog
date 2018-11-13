@@ -37,7 +37,8 @@ steps:
  
 - script: |
     az extension add --name storage-preview
-  displayName: 'Enable AZ extension'
+    az login --service-principal -u $(ARM_CLIENT_ID) -p $(ARM_CLIENT_SECRET) --tenant $(ARM_TENANT_ID)
+  displayName: 'Enable AZ extension and Login'
 
 - script: |
     cd deploy/terraform
