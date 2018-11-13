@@ -54,9 +54,9 @@ steps:
       
 
 - script: |
-    az storage blob delete-batch -s  $web --account-name $(BLOB_NAME)
+    az storage blob delete-batch -s $web --account-name $(BLOB_NAME)
   displayName: 'clean content'
 
 - script: |
-    az storage blob upload-batch -s  public -d $web --account-name ${BLOB_NAME}
+    az storage blob upload-batch -s public -d $web --account-name ${BLOB_NAME}
   displayName: 'copy content'
