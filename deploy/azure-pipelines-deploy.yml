@@ -33,8 +33,11 @@ steps:
 
 - script: |
     ls -la
-  displayName: 'LS'
+  displayName: 'Display contents'
  
+- script: |
+    az extension add --name storage-preview
+  displayName: 'Enable AZ extension'
 
 - script: |
     cd deploy/terraform
