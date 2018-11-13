@@ -38,5 +38,21 @@ steps:
 
 - script: |
     cd deploy/terraform
-    terraform init
-  displayName: 'Terraform init'
+    terraform init -backend-config=backend.tfvars
+    terraform apply -auto-approve -var dns_name=$(BLOB_NAME)
+  displayName: 'Terraform init and apply'
+  env:
+      ARM_TENANT_ID: $(ARM_TENANT_ID)
+      ARM_SUBSCRIPTION_ID: $(ARM_SUBSCRIPTION_ID)
+      ARM_CLIENT_ID: $(ARM_CLIENT_ID)
+      ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+      ARM_ACCESS_KEY: $(ARM_ACCESS_KEY)
+      
+
+- script: |
+    az storage blob delete-batch -s  $web --account-name $(BLOB_NAME)
+  displayName: 'clean content'
+
+- script: |
+    az storage blob upload-batch -s  public -d $web --account-name ${BLOB_NAME}
+  displayName: 'copy content'

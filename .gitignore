@@ -58,3 +58,7 @@ public/
 
 # Bundle stats
 bundle-stats.json
+
+.terraform
+*.tfstate*
+*.azcli
