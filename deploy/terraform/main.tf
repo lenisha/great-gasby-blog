@@ -66,5 +66,5 @@ resource "azurerm_cdn_endpoint" "webblob-cdn-endpt" {
     host_name = "${data.local_file.webblob-url.content}"
 	https_port = "443"
   }
-  depends_on = ["data.local_file.webblob-url"]
+  depends_on = ["null_resource.shell"]
 }
