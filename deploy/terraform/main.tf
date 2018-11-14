@@ -29,7 +29,7 @@ resource "azurerm_storage_account" "webblob" {
 
 # Query Web Endpoint for Static Hosting
 resource "null_resource" "shell" {
-  depends_on = ["azurerm_storage_account.webblob"]
+  #depends_on = ["azurerm_storage_account.webblob"]
   provisioner "local-exec" {
     command = "printf $(az storage account show -n ${azurerm_storage_account.webblob.name} -g ${azurerm_resource_group.demo-rg.name} --query \"primaryEndpoints.web\" --output tsv | cut -d \"/\" -f 3) > webendpoint.txt"
   }
