@@ -28,19 +28,12 @@ resource "azurerm_storage_account" "webblob" {
 }
 
 # Query Web Endpoint for Static Hosting
-resource "null_resource" "shell" {
-  #depends_on = ["azurerm_storage_account.webblob"]
-  provisioner "local-exec" {
-    command = "printf $(az storage account show -n ${azurerm_storage_account.webblob.name} -g ${azurerm_resource_group.demo-rg.name} --query \"primaryEndpoints.web\" --output tsv | cut -d \"/\" -f 3) > webendpoint.txt"
-  }
+module "query_url" {
+  source  = "matti/resource/shell"
+
+  command = "printf $(az storage account show -n ${azurerm_storage_account.webblob.name} -g ${azurerm_resource_group.demo-rg.name} --query \"primaryEndpoints.web\" --output tsv | cut -d \"/\" -f 3)"
 }
 
-
-# Read web endpoint data
-data "local_file" "webblob-url" {
-  filename   = "${path.module}/webendpoint.txt"
-  depends_on = ["null_resource.shell"]
-}
 
 # Create Azure CDN profile
 resource "azurerm_cdn_profile" "webblob-cdn" {
@@ -58,13 +51,13 @@ resource "azurerm_cdn_endpoint" "webblob-cdn-endpt" {
   resource_group_name = "${azurerm_resource_group.demo-rg.name}"
   is_http_allowed 	  = "false"
   optimization_type   = "GeneralWebDelivery"
-  origin_host_header  = "${data.local_file.webblob-url.content}"
+  origin_host_header  = "${module.query_url.stdout}"
   querystring_caching_behaviour = "IgnoreQueryString"
   
   origin {
     name      = "assets"
-    host_name = "${data.local_file.webblob-url.content}"
+    host_name = "${module.query_url.stdout}"
 	https_port = "443"
   }
-  depends_on = ["null_resource.shell"]
+  depends_on = ["module.query_url"]
 }
