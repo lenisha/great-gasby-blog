@@ -27,7 +27,7 @@ steps:
     downloadType: 'single' # Options: single, specific
     artifactName: 'drop' # Required when downloadType == Single
     #itemPattern: '**' # Optional
-    downloadPath: 'public' 
+    downloadPath: '.' 
     #parallelizationLimit: '8' # Optional
 
 
@@ -58,5 +58,5 @@ steps:
   displayName: 'clean content'
 
 - script: |
-    az storage blob upload-batch -s public -d \$web --account-name ${BLOB_NAME}
-  displayName: 'copy content'
+    az storage blob upload-batch -s drop -d \$web --account-name ${BLOB_NAME}
+  displayName: 'copy content and site is ready https://${BLOB_NAME}.azureedge.net/index.html'
