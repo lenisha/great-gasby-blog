@@ -97,4 +97,4 @@ exports.onCreateWebpackConfig = ({ stage, actions }) => {
       modules: [path.resolve(__dirname, 'src'), 'node_modules'],
     },
   });
-
+};
