@@ -4,7 +4,8 @@ title: "JAM is fun"
 category: "JAMStack"
 ---
 
-JAMStack is fun learning.
+JAMStack is fun learning 
+
 Here is some code:
 
 ```js
