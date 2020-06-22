@@ -40,17 +40,17 @@ steps:
     az login --service-principal -u $(ARM_CLIENT_ID) -p $(ARM_CLIENT_SECRET) --tenant $(ARM_TENANT_ID)
   displayName: 'Enable AZ  Login'
 
-- script: |
-    cd deploy/terraform
-    terraform init -backend-config=backend.tfvars
-    terraform apply -auto-approve -var dns_name=$(BLOB_NAME)
-  displayName: 'Terraform init and apply'
-  env:
-      ARM_TENANT_ID: $(ARM_TENANT_ID)
-      ARM_SUBSCRIPTION_ID: $(ARM_SUBSCRIPTION_ID)
-      ARM_CLIENT_ID: $(ARM_CLIENT_ID)
-      ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
-      ARM_ACCESS_KEY: $(ARM_ACCESS_KEY)
+#- script: |
+#    cd deploy/terraform
+#    terraform init -backend-config=backend.tfvars
+#    terraform apply -auto-approve -var dns_name=$(BLOB_NAME)
+#  displayName: 'Terraform init and apply'
+#  env:
+#      ARM_TENANT_ID: $(ARM_TENANT_ID)
+#      ARM_SUBSCRIPTION_ID: $(ARM_SUBSCRIPTION_ID)
+#      ARM_CLIENT_ID: $(ARM_CLIENT_ID)
+#      ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+#      ARM_ACCESS_KEY: $(ARM_ACCESS_KEY)
       
 
 - script: |
