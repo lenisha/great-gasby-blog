@@ -5,7 +5,7 @@
   "author": "LekoArts <hello@lekoarts.de>",
   "dependencies": {
     "babel-plugin-styled-components": "^1.8.0",
-    "gatsby": "^2.0.22",
+    "gatsby": "^2.32.13",
     "gatsby-plugin-catch-links": "^2.0.4",
     "gatsby-plugin-lodash": "^3.0.1",
     "gatsby-plugin-manifest": "^2.0.5",
